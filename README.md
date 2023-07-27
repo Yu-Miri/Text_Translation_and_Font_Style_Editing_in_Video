@@ -28,16 +28,14 @@
 ## 문제 정의
 
 - OTT 플랫폼을 통해 해외 콘텐츠 접근성이 올라가며, 국내 콘텐츠 수출 시장의 규모가 성장하는 추세로, 2021년 하반기 기준 콘텐츠 산업 수출이 전년 대비 13.9% 증가하는 것을 볼 수 있다.
-<img width="461" alt="스크린샷 2023-07-27 오전 11 02 21" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/04b0b940-7900-4844-843c-e23f733b8fdb">
+<img width="798" alt="스크린샷 2023-07-27 오전 11 25 16" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/14e734b8-10c4-467a-87e9-c196626844bf">
 
 - 원작과 수출작을 비교해 보았을 때, 언어는 달라지지만 원작 스타일을 최대한 보존하여 수출되고 있다. 컴퓨터 그래픽 작업은 각 프레임 별로 편집자가 해당 영역에 대해 글자 뒤 배경의 손실을 최소화하고 새로운 글자로 편집하는 작업이 필요하지만, 이러한 작업은 10초 길이의 영상 기준으로 10만원에서 300만원 사이의 비용과 60초 이내의 영상 기준으로 최소 2일에서 5일 사이의 제작기간이 소요된다. 또한, 자동으로 번역하는 기술도 있지만 배경의 손실과 글자 스타일을 그대로 적용하기에 실제로 사용하기 어렵다.
-<img width="464" alt="스크린샷 2023-07-27 오전 11 02 52" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/9a439467-4ea5-4ba7-a248-996676d8f0fa">
-
-<img width="462" alt="스크린샷 2023-07-27 오전 11 03 37" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/78b004ee-06a8-4ee7-ab16-ba1bcf39a4fc">
+<img width="807" alt="스크린샷 2023-07-27 오전 11 25 52" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/441e8fce-ceee-4f97-b6b5-7eeabb866534">
 
 
 - **실제 사례**
-<img width="462" alt="스크린샷 2023-07-27 오전 11 03 59" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/20fe396a-3622-4958-ba3c-1d6b9a54277c">
+<img width="797" alt="스크린샷 2023-07-27 오전 11 26 13" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/92f71a2f-76ed-4b2c-865f-a0527fd2c738">
 
 ---
 ## 해결 방안
@@ -84,7 +82,7 @@
 
 ### 자동편집 개요
 
-<img width="716" alt="스크린샷 2023-07-27 오전 11 05 20" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/e6b170f6-a908-419a-bb4d-414a94220bc5">
+<img width="830" alt="스크린샷 2023-07-27 오전 11 26 52" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/47567efd-79e7-4aa8-a5a0-d682414d6a2b">
 
 
 1. **OCR & Crop** : 원본 영상 프레임 내 텍스트 영역을 감지 후 텍스트로 변환하여 텍스트 영역을 crop하여 저장
@@ -97,20 +95,20 @@
 - 광학문자인식 기술은 컴퓨터가 이미지 내 존재하는 글자들을 감지하여 글자의 영역을 표시해 주며, 감지한 글자의 내용을 추출하는 기능으로, 한국어를 영어로 번역할 때 한국어의 위치를 감지 및 인식하여 해당 영역을 잘라서 저장하며, 번역기를 통해 인식된 한국어를 영어로 변환할 때 사용한다.
 - 기존에 문장 단위로 인식된 문제를 Easy OCR의 공식 문서를 파악하여 단어 단위로 인식하도록 하이퍼 파라미터를 조정하여 번역의 정확도를 높일 수 있었다.
 - Easy OCR의 선정 이유 : 80가지 이상의 언어 인식이 가능하고, 한국어로 학습된 모델이 존재했으며, OCR 모델 중에서도 유명한 Tesseract에 비해 상대적으로 한국어 정확도가 높았기에 OCR의 모델을 Easy OCR으로 선정하였다.
-<img width="722" alt="스크린샷 2023-07-27 오전 11 05 46" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/98156e6e-d86c-4bc8-868d-1f0dd6f3685b">
+<img width="839" alt="스크린샷 2023-07-27 오전 11 27 18" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/5a0afe14-ef4f-4942-a2bc-8c2ce0015165">
 
 
 
 ### Translation : Papago API
 
 - 영상 내 인식된 글자를 자동으로 번역
-<img width="703" alt="스크린샷 2023-07-27 오전 11 06 12" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/f9036572-8bc5-48e9-824f-fe7f3de58554">
+<img width="821" alt="스크린샷 2023-07-27 오전 11 27 38" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/79539895-63da-45ff-971b-0019a530ef2c">
 
 
 ### **Inpainting & Font Style Transfer : MOSTEL**
 
 **MOSTEL Architecture & Method**
-<img width="692" alt="스크린샷 2023-07-27 오전 11 08 44" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/53a9648a-959d-4581-a3e6-82dba85abfff">
+<img width="816" alt="스크린샷 2023-07-27 오전 11 28 11" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/68e5e24f-92b2-4fc7-bd79-127d3ffc1cb5">
 
 **BRM** : 배경에서 유지해야 하는 영역을 분할 및 보존하여 텍스트를 지워주는 모듈
 
@@ -125,8 +123,8 @@
 - **SLM**[Stroke Level Modification]
     - EG의 출력이 Stroke 영역의 분할 작업에 해당되며, 배경의 무결성을 위해 픽셀의 변화를 최소화하는 모듈
     - 마스킹 이미지를 통해 명시적으로 Editing Point를 Guide하여 안정적으로 편집 이미지를 생성
-
-<img width="693" alt="스크린샷 2023-07-27 오전 11 09 52" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/722cb48e-546e-47ab-97ff-90663bcd95af">
+      
+<img width="816" alt="스크린샷 2023-07-27 오전 11 28 38" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/63e952a1-b178-48e3-979b-5f4a38ff454b">
 
 - **Pre-Transformation** : 원본 이미지와 타겟 텍스트 이미지를 부분적으로 특수한 변환을 적용시켜 전처리하고, Background Feature와 Text Style을 혼합하여 Edited Image를 생성하는 모듈
     - **Back Filtering** : 학습에 방해가 되는 복잡한 배경은 BRM에서 생성한 마스킹 이미지를 통해 배경을 필터링하여 노이즈 제거
@@ -144,22 +142,21 @@
 **MOSTEL 데이터셋**
 
 **[합성 이미지 데이터]** : 기존의 MOSTEL 모델은 이미지 내에 있는 영어 글자 스타일을 다른 영어 단어에 반영한 이미지를 생성하는 모델이다. 본 프로젝트는 영어가 아닌 한국어를 영어로 바꾸어 이미지를 생성하는 모델이므로, 영어로만 학습된 MOSTEL을 Fine Tuning하기 위해 한국어-영어 버전의 데이터셋 생성하였다.
-<img width="866" alt="스크린샷 2023-07-09 오후 5 30 56" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/0aff6561-98f5-462a-bfc5-8a7296c9e679
+<img width="821" alt="스크린샷 2023-07-27 오전 11 29 09" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/1aed52b3-88a4-4f0d-b49e-d215855bddc3">
 
 **[합성 이미지 데이터 : Word & Sentence]**
 
 - 원래 MOSTEL의 데이터셋은 단어 단위(word-level)의 텍스트 이미지 데이터셋으로만 구성되어 있지만, 아래 이미지와 같이 실제 간판이나 영상 내 글자는 띄어쓰기가 존재하거나 두 단어 이상의 영어로 이루어져 있다.
 - 이를 고려하여 띄어쓰기가 있는 한국어와 영어 말뭉치 각각 15만 개와 띄어쓰기가 없는 한국어와 영어 말뭉치 각각 10만 개로 데이터를 생성하였다.
-<img width="500" alt="스크린샷 2023-07-09 오후 5 31 17" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/a4b29c9d-1a9a-480f-aed2-a77626265612">
+<img width="819" alt="스크린샷 2023-07-27 오전 11 31 34" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/039814b1-0418-410c-b071-45582f31c8fd">
 
 **[Custom 합성 이미지 데이터 : 기존 Background]**
-<img width="500" alt="스크린샷 2023-07-09 오후 5 31 29" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/7bb31813-6f66-43d7-9f56-69332f6ae0ed">
+<img width="821" alt="스크린샷 2023-07-27 오전 11 32 01" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/072bde63-8c01-4827-ad95-f6d4f8f72f20">
 
 
 - 기존 데이터셋 : 위의 사진과 같이 현실에서는 글자 배경이 단순하지만, 기존에 생성한 데이터셋은 현실에서 보기 힘든 복잡한 배경을 사용하여 데이터셋을 생성하였다.
 - 기존 데이터셋으로 학습시킨 결과, 배경 이미지가 현실과 차이나는 Domain Gap이 커지는 문제로 Inference 성능 결과가 좋지 않았다.
-
-<img width="867" alt="스크린샷 2023-07-09 오후 5 32 06" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/47c5b57f-f384-43df-a871-03bc158aee71">
+<img width="820" alt="스크린샷 2023-07-27 오전 11 32 23" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/04d994ba-2704-478d-b358-ab71d0d9fce3">
 
 
 → 이를 해결하기 위해 복잡한 배경을 제거하고, 단색 배경을 추가하여 새로운 데이터셋을 생성하였다.
@@ -178,7 +175,8 @@
 - 기존 데이터셋의 Font Style은 일정한 폰트와 크기, 각도, 색으로 생성하였으며, 이에 따라 한정된 Font Style에 과적합되어 Target Text에 Font Style을 적용시킬 수 없었다.
 - 이를 해결하기 위해 상업, 광고, 포스터에 자주 사용되는 108개의 다양한 폰트와 크기, 각도, 색을 다르게 하여 생성한 결과, 위의 사진과 같이 Font Style을 제대로 적용시키는 것을 볼 수 있다.
 
-**[Custom 현실 이미지 데이터]**
+**[Custom 현실 이미지 데이터]**![Uploading 스크린샷 2023-07-27 오전 11.32.56.png…]()
+
 
 - Label이 지정되지 않은 현실 이미지 데이터셋을 통해 Semi-Supervised Learning이 가능
 - Target Text에 Font Style을 입힌 최종 이미지의 Label을 원본 이미지로 줌으로써 Background에서 Text가 지워진 Inpainting Image와 마스킹된 이미지가 없는 실제 이미지만으로도 학습을 가능하게 하여 Domain Gap을 줄였다.
