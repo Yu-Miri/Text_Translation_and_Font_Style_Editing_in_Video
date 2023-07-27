@@ -50,7 +50,7 @@
 - 팀 프로젝트를 통하여 컴퓨터 그래픽 작업을 효율적으로 하기 위해 동영상을 프레임 단위의 이미지로 추출하는 기술, 광학문자인식(OCR), 번역기, 이미지 생성 모델인 MOSTEL 딥러닝 모델을 사용하여 영상 속에 등장하는 한국어를 영어로 바꾸어서 편집된 영상을 자동 및 수동으로 제작할 수 있는 웹사이트를 제공
 
 ### <“Text Translation and Font Style Editing in Video” 프로젝트의 End-to-End Framework 구조>
-<img width="488" alt="스크린샷 2023-07-27 오전 11 04 45" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/9d3f18f9-ccc8-4bad-83b8-7383360314f1">
+<img width="1293" alt="스크린샷 2023-07-27 오전 11 59 47" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/b8fff571-0dff-4732-a240-a629b9e5648f">
 
 
 - 본 프로젝트는 딥러닝 모델을 활용하여 영상 내 한국어 글자 스타일을 번역된 영어 글자에 적용하여 컴퓨터 그래픽을 자동으로 편집하는 End-to-End Framework 제시한다.
@@ -175,6 +175,7 @@
 <img width="820" alt="스크린샷 2023-07-27 오전 11 34 21" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/4d8ccbfa-95ad-4905-affa-14705a056b6d">
 
 **[Custom 합성 이미지 데이터 : Font Style]**
+
 <img width="820" alt="스크린샷 2023-07-27 오전 11 34 42" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/084ab3cf-ed46-4419-b7c4-d092f8c73b59">
 
 
@@ -286,6 +287,7 @@
 3. 제거한 이미지를 원래 글자 위치에 Projection
 
 [MOSTEL BRM 모듈 Custom화]
+
 <img width="746" alt="스크린샷 2023-07-27 오전 11 48 26" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/1fe9d75a-1660-4bb8-9d56-401077a2770b">
 
 - **BRM의 Inpainting 원리** : Masking Image로 제거해야 하는 영역을 Guide하여 텍스트를 제거
