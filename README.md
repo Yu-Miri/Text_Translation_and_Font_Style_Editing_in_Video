@@ -138,17 +138,20 @@
 - **Only in Reference**
     - BRM 모듈의 출력 이미지인 Inpainting Image와 Font Style이 Transfer된 Text를 Fusion하는 것이 아닌, 단순히 Inpainting Image를 참고하여 배경을 제거하면서 스타일이 적용된 Text를 Fusion하는 전략
 - Label이 지정된 합성 데이터셋과 준지도 학습 방식을 위해 Label이 지정되지 않은 현실 데이터셋으로 훈련
+
 ---
+
 **MOSTEL 데이터셋**
 
 **[합성 이미지 데이터]** : 기존의 MOSTEL 모델은 이미지 내에 있는 영어 글자 스타일을 다른 영어 단어에 반영한 이미지를 생성하는 모델이다. 본 프로젝트는 영어가 아닌 한국어를 영어로 바꾸어 이미지를 생성하는 모델이므로, 영어로만 학습된 MOSTEL을 Fine Tuning하기 위해 한국어-영어 버전의 데이터셋 생성하였다.
+
 <img width="821" alt="스크린샷 2023-07-27 오전 11 29 09" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/1aed52b3-88a4-4f0d-b49e-d215855bddc3">
 
 **[합성 이미지 데이터 : Word & Sentence]**
 
 - 원래 MOSTEL의 데이터셋은 단어 단위(word-level)의 텍스트 이미지 데이터셋으로만 구성되어 있지만, 아래 이미지와 같이 실제 간판이나 영상 내 글자는 띄어쓰기가 존재하거나 두 단어 이상의 영어로 이루어져 있다.
 - 이를 고려하여 띄어쓰기가 있는 한국어와 영어 말뭉치 각각 15만 개와 띄어쓰기가 없는 한국어와 영어 말뭉치 각각 10만 개로 데이터를 생성하였다.
-- 
+
 <img width="819" alt="스크린샷 2023-07-27 오전 11 31 34" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/039814b1-0418-410c-b071-45582f31c8fd">
 
 **[Custom 합성 이미지 데이터 : 기존 Background]**
@@ -168,6 +171,7 @@
 
 - 재생성한 데이터셋 : 학습에 방해가 되는 복잡한 배경 이미지를 제거하고, 단조로운 사진 배경 이미지 8,000장과 단색 배경 8,000장을 추가하여 새로운 데이터 셋을 생성하였다.
 - 재생성한 데이터셋으로 학습시킨 결과, 현실과 차이나는 Domain Gap의 문제를 해결할 수 있었으며, 이에 따라 아래의 Inference 이미지를 통해 Background와 Text를 잘 분리하여 Inpainting하는 것을 볼 수 있다.
+
 <img width="820" alt="스크린샷 2023-07-27 오전 11 34 21" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/4d8ccbfa-95ad-4905-affa-14705a056b6d">
 
 **[Custom 합성 이미지 데이터 : Font Style]**
@@ -181,9 +185,11 @@
 
 - Label이 지정되지 않은 현실 이미지 데이터셋을 통해 Semi-Supervised Learning이 가능
 - Target Text에 Font Style을 입힌 최종 이미지의 Label을 원본 이미지로 줌으로써 Background에서 Text가 지워진 Inpainting Image와 마스킹된 이미지가 없는 실제 이미지만으로도 학습을 가능하게 하여 Domain Gap을 줄였다.
+  
 <img width="431" alt="스크린샷 2023-07-27 오전 11 35 07" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/85d4127d-25b0-45d4-827a-cdbe975548d8">
 
 - 영어 현실 이미지 데이터는 MOSTEL Github에 제공되어 있는 데이터셋을 사용하였으며, 한국어 현실 이미지 데이터는 AI HUB에 제공되어 있는 “야외 실제 촬영 한글 이미지” 데이터셋 책 표지 800장을 사용하여 데이터셋을 생성하였다.
+  
 <img width="822" alt="스크린샷 2023-07-27 오전 11 37 35" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/87fcf2b4-e852-4573-a1e7-ee5d164bb7bb">
 
 **[최종 MOSTEL 훈련 데이터셋]**
@@ -197,12 +203,15 @@
 [COMPARISION MODEL : **MOSTEL** vs. **SRNet**]
 
 - SRNet은 합성 이미지로만 학습이 가능하여 배경의 텍스처 보존이 어렵고, 동시에 작업이 이루어지다 보니 Bias가 발생하여 실제 영상에서 성능이 저하되는 문제가 발생하였다.
+  
 <img width="798" alt="스크린샷 2023-07-27 오전 11 41 25" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/ba3ba72d-8284-4174-82b7-764dbbc2b02f">
 
 - SRNet은 MOSTEL과 다르게 단순히 Text Style을 추출함과 동시에 Text를 제거한 Background를 추출하여 두 결과값을 Fusion한다. 편집 과정에서 이미지 전체 픽셀을 고려하여 배경과 글자 영역을 잘 분리하지 못 하고, 픽셀의 배경 영역에 변화를 일으키는 문제가 발생되었다.
+  
 <img width="795" alt="스크린샷 2023-07-27 오전 11 41 51" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/3d0280ed-bd60-4fdb-bc9a-36c56e975891">
     
 - 반면에 MOSTEL은 배경과 글자를 따로 분리하여 학습하는 구조로, 바뀌어야 할 픽셀의 위치를 Masking하여 Guide함으로써 글자에 변환을 적용할 때 배경은 영향을 받지 않는다.
+  
 <img width="797" alt="스크린샷 2023-07-27 오전 11 42 20" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/fb674f96-a35f-4a4e-bd82-5e336918be93">
 
 
