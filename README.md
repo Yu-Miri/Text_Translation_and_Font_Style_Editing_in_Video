@@ -33,6 +33,7 @@
     - **Mostel Train** : 지도 학습에 쓰이는 생성한 합성 이미지 데이터셋과 준지도 학습에 쓰이는 현실 이미지 데이터셋을 7:1 Batch의 비율로 하여 학습을 진행하였으며, 정성적으로 Text Style Transfer 결과를 확인하면서 평가하고, 이에 더하여 정량적으로 Loss의 모니터링, Metrics를 통해 하이퍼 파라미터인 Learning Rate를 0.00005로 하여 15만 번의 학습을 진행한 후, 0.00004로 감소시켜 7만 번의 학습을 진행하였습니다.
     - **웹사이트 구축** : 웹사이트의 구상도 제작과 Flask를 통하여 전체적인 웹사이트의 디자인, 회원가입창, 로그인창, 편집기록창, 업로드창, 영상 업로드창을 구축하였습니다.
 - **사용언어 및 개발환경** : AWS, VSCode, Ubuntu, MySQLWorkbench, FileZilla, Slack, Flask, Docker, Anaconda, Google colab Pro+, Python, Notion
+  
 | AWS | 인스턴스 크기 | GPU 메모리 | vCPU | 메모리 | 디스크 |
 | --- | --- | --- | --- | --- | --- |
 | 단일 GPU VM | g5.xlarge | 24 | 4 | 16GB | 250gb |
