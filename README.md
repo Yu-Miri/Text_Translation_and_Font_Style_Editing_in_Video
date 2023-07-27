@@ -148,14 +148,17 @@
 
 - 원래 MOSTEL의 데이터셋은 단어 단위(word-level)의 텍스트 이미지 데이터셋으로만 구성되어 있지만, 아래 이미지와 같이 실제 간판이나 영상 내 글자는 띄어쓰기가 존재하거나 두 단어 이상의 영어로 이루어져 있다.
 - 이를 고려하여 띄어쓰기가 있는 한국어와 영어 말뭉치 각각 15만 개와 띄어쓰기가 없는 한국어와 영어 말뭉치 각각 10만 개로 데이터를 생성하였다.
+- 
 <img width="819" alt="스크린샷 2023-07-27 오전 11 31 34" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/039814b1-0418-410c-b071-45582f31c8fd">
 
 **[Custom 합성 이미지 데이터 : 기존 Background]**
+
 <img width="821" alt="스크린샷 2023-07-27 오전 11 32 01" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/072bde63-8c01-4827-ad95-f6d4f8f72f20">
 
 
 - 기존 데이터셋 : 위의 사진과 같이 현실에서는 글자 배경이 단순하지만, 기존에 생성한 데이터셋은 현실에서 보기 힘든 복잡한 배경을 사용하여 데이터셋을 생성하였다.
 - 기존 데이터셋으로 학습시킨 결과, 배경 이미지가 현실과 차이나는 Domain Gap이 커지는 문제로 Inference 성능 결과가 좋지 않았다.
+  
 <img width="820" alt="스크린샷 2023-07-27 오전 11 32 23" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/04d994ba-2704-478d-b358-ab71d0d9fce3">
 
 
@@ -175,12 +178,11 @@
 - 이를 해결하기 위해 상업, 광고, 포스터에 자주 사용되는 108개의 다양한 폰트와 크기, 각도, 색을 다르게 하여 생성한 결과, 위의 사진과 같이 Font Style을 제대로 적용시키는 것을 볼 수 있다.
 
 **[Custom 현실 이미지 데이터]**
-<img width="431" alt="스크린샷 2023-07-27 오전 11 35 07" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/85d4127d-25b0-45d4-827a-cdbe975548d8">
 
 - Label이 지정되지 않은 현실 이미지 데이터셋을 통해 Semi-Supervised Learning이 가능
 - Target Text에 Font Style을 입힌 최종 이미지의 Label을 원본 이미지로 줌으로써 Background에서 Text가 지워진 Inpainting Image와 마스킹된 이미지가 없는 실제 이미지만으로도 학습을 가능하게 하여 Domain Gap을 줄였다.
-<img width="422" alt="스크린샷 2023-07-09 오후 5 33 43" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/0db3eeb0-0d43-4f73-a5e4-88a1c18344f2">
-    
+<img width="431" alt="스크린샷 2023-07-27 오전 11 35 07" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/85d4127d-25b0-45d4-827a-cdbe975548d8">
+
 - 영어 현실 이미지 데이터는 MOSTEL Github에 제공되어 있는 데이터셋을 사용하였으며, 한국어 현실 이미지 데이터는 AI HUB에 제공되어 있는 “야외 실제 촬영 한글 이미지” 데이터셋 책 표지 800장을 사용하여 데이터셋을 생성하였다.
 <img width="822" alt="스크린샷 2023-07-27 오전 11 37 35" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/87fcf2b4-e852-4573-a1e7-ee5d164bb7bb">
 
