@@ -165,60 +165,53 @@
 
 - 재생성한 데이터셋 : 학습에 방해가 되는 복잡한 배경 이미지를 제거하고, 단조로운 사진 배경 이미지 8,000장과 단색 배경 8,000장을 추가하여 새로운 데이터 셋을 생성하였다.
 - 재생성한 데이터셋으로 학습시킨 결과, 현실과 차이나는 Domain Gap의 문제를 해결할 수 있었으며, 이에 따라 아래의 Inference 이미지를 통해 Background와 Text를 잘 분리하여 Inpainting하는 것을 볼 수 있다.
-
-<img width="867" alt="스크린샷 2023-07-09 오후 5 32 32" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/ebc4d52c-1c1f-4586-9186-9d37af79ad5a">
+<img width="820" alt="스크린샷 2023-07-27 오전 11 34 21" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/4d8ccbfa-95ad-4905-affa-14705a056b6d">
 
 **[Custom 합성 이미지 데이터 : Font Style]**
-<img width="863" alt="스크린샷 2023-07-09 오후 5 32 52" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/12340e33-6372-4862-ad67-2dbeba9d29f2">
+<img width="820" alt="스크린샷 2023-07-27 오전 11 34 42" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/084ab3cf-ed46-4419-b7c4-d092f8c73b59">
 
 
 - 기존 데이터셋의 Font Style은 일정한 폰트와 크기, 각도, 색으로 생성하였으며, 이에 따라 한정된 Font Style에 과적합되어 Target Text에 Font Style을 적용시킬 수 없었다.
 - 이를 해결하기 위해 상업, 광고, 포스터에 자주 사용되는 108개의 다양한 폰트와 크기, 각도, 색을 다르게 하여 생성한 결과, 위의 사진과 같이 Font Style을 제대로 적용시키는 것을 볼 수 있다.
 
-**[Custom 현실 이미지 데이터]**![Uploading 스크린샷 2023-07-27 오전 11.32.56.png…]()
-
+**[Custom 현실 이미지 데이터]**
+<img width="431" alt="스크린샷 2023-07-27 오전 11 35 07" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/85d4127d-25b0-45d4-827a-cdbe975548d8">
 
 - Label이 지정되지 않은 현실 이미지 데이터셋을 통해 Semi-Supervised Learning이 가능
 - Target Text에 Font Style을 입힌 최종 이미지의 Label을 원본 이미지로 줌으로써 Background에서 Text가 지워진 Inpainting Image와 마스킹된 이미지가 없는 실제 이미지만으로도 학습을 가능하게 하여 Domain Gap을 줄였다.
 <img width="422" alt="스크린샷 2023-07-09 오후 5 33 43" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/0db3eeb0-0d43-4f73-a5e4-88a1c18344f2">
     
 - 영어 현실 이미지 데이터는 MOSTEL Github에 제공되어 있는 데이터셋을 사용하였으며, 한국어 현실 이미지 데이터는 AI HUB에 제공되어 있는 “야외 실제 촬영 한글 이미지” 데이터셋 책 표지 800장을 사용하여 데이터셋을 생성하였다.
-
-<img width="861" alt="스크린샷 2023-07-09 오후 5 34 02" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/9a84314a-6f0d-4ebe-9885-92ec581292f6">
+<img width="822" alt="스크린샷 2023-07-27 오전 11 37 35" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/87fcf2b4-e852-4573-a1e7-ee5d164bb7bb">
 
 **[최종 MOSTEL 훈련 데이터셋]**
-
-<img width="1073" alt="스크린샷 2023-07-09 오후 5 35 17" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/0191ba7d-8a7c-49b6-a1cb-e8fce33602c9">
-
+<img width="834" alt="스크린샷 2023-07-27 오전 11 40 41" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/26775c2a-040d-455b-b1be-c9f3246e463a">
 
 - 합성 이미지와 현실 이미지를 7:1 Batch의 비율로 하여 정성적으로 Text Style Transfer 결과를 확인하면서 평가하고, 이에 더하여 정량적으로 Loss의 모니터링, Metrics를 통해 Learning Rate를 0.00005로 15만 EPOCH 학습하고, 이후에 Learning Rate를 0.00004로 감소시켜 7만 EPOCH을 학습하여 총 22만 EPOCH을 146시간 학습하였다.
 
 **[MOSTEL 개선 전 후 비교]**
-
-<img width="1052" alt="스크린샷 2023-07-09 오후 5 37 03" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/0be2a1e8-d378-47d8-a7cc-1d3c7a5c38d7">
+<img width="819" alt="스크린샷 2023-07-27 오전 11 41 02" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/24a83878-0188-4c29-8013-c1c7d72d1ec2">
 
 [COMPARISION MODEL : **MOSTEL** vs. **SRNet**]
 
 - SRNet은 합성 이미지로만 학습이 가능하여 배경의 텍스처 보존이 어렵고, 동시에 작업이 이루어지다 보니 Bias가 발생하여 실제 영상에서 성능이 저하되는 문제가 발생하였다.
-<img width="1032" alt="스크린샷 2023-07-09 오후 5 37 28" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/cf79dead-198b-402a-8945-4d288bd52cee">
+<img width="798" alt="스크린샷 2023-07-27 오전 11 41 25" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/ba3ba72d-8284-4174-82b7-764dbbc2b02f">
 
 - SRNet은 MOSTEL과 다르게 단순히 Text Style을 추출함과 동시에 Text를 제거한 Background를 추출하여 두 결과값을 Fusion한다. 편집 과정에서 이미지 전체 픽셀을 고려하여 배경과 글자 영역을 잘 분리하지 못 하고, 픽셀의 배경 영역에 변화를 일으키는 문제가 발생되었다.
-    
-<img width="1035" alt="스크린샷 2023-07-09 오후 5 37 58" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/8481ec7d-36b3-45ce-aad1-22b58c4f7592">
-
+<img width="795" alt="스크린샷 2023-07-27 오전 11 41 51" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/3d0280ed-bd60-4fdb-bc9a-36c56e975891">
     
 - 반면에 MOSTEL은 배경과 글자를 따로 분리하여 학습하는 구조로, 바뀌어야 할 픽셀의 위치를 Masking하여 Guide함으로써 글자에 변환을 적용할 때 배경은 영향을 받지 않는다.
-<img width="1027" alt="스크린샷 2023-07-09 오후 5 38 33" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/00b52188-21c6-483c-998a-05bd6dcff2f7">
+<img width="797" alt="스크린샷 2023-07-27 오전 11 42 20" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/fb674f96-a35f-4a4e-bd82-5e336918be93">
 
 
 - **Text Inpainting 결과**
-<img width="1029" alt="스크린샷 2023-07-09 오후 5 38 52" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/ded29a85-d706-4e68-a6d7-78313f9edbcd">
+<img width="797" alt="스크린샷 2023-07-27 오전 11 42 42" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/9e60f23f-faa6-4316-bb4c-03c46ffea4f0">
 
     - SRNet에 비해 MOSTEL은 배경 영역을 최대한 보존하여 Text를 Inpaint하는 것을 볼 수 있다.
  
 
 - **Style Transfer 결과**
-<img width="1034" alt="스크린샷 2023-07-09 오후 5 39 16" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/85a23c9d-3204-4c6c-80f3-dd8ef3961436">
+<img width="799" alt="스크린샷 2023-07-27 오전 11 43 16" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/61bb53e6-0f54-4ce4-a3b4-713290dfcaca">
 
 ---
 **[MOSTEL Loss]**
@@ -229,14 +222,14 @@
 - **Background Inpainting Image**는 생성된 이미지 텐서의 로그값 평균을 계산하고 음수를 취하여 Loss를 계산하는 GAN Loss와 정답 이미지 텐서와 생성된 이미지 텐서 간 차이의 제곱을 계산하여 평균을 구하는 L2 Loss, Dice Loss로 최적화하여 생성된다.
 - **Fusion Image**에는 MSE 평균 제곱의 오차를 계산하는 VGG Loss가 채택되는데, VGG Loss는 사실적인 이미지 생성을 위한 Perceptual Loss와 수준 높은 폰트 스타일 적용을 위한 Style Loss를 반영한다. Perceptual Loss와 Style Loss는 정답 이미지 텐서와 생성된 이미지 텐서 사이의 절댓값 차이를 계산하여 계산된 차이의 평균을 구하는 L1 Loss를 채택한다. 또한, 글자 인식을 위한 Recognizer Loss는 정답 이미지 텐서와 생성된 이미지 텐서의 로그 확률을 계산하여 음수를 취한 후 평균을 계산하는 Cross Entropy Loss를 채택한다. 최종적으로 Fusion Image는 GAN Loss와 VGG Loss, L2 Loss, Dice Loss, Recognizer Loss로 최적화하여 생성된다.
 
-<img width="1061" alt="스크린샷 2023-07-09 오후 5 45 15" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/d6e63cb3-1611-4233-8549-c861362cbd80">
+<img width="833" alt="스크린샷 2023-07-27 오전 11 44 30" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/d0da0704-cbfd-481a-9cd3-7441acd86cb1">
 
 - Discriminator Fusion Loss와 Discriminator Background Inpaint Loss는 정답 이미지 텐서와 생성된 이미지 텐서 간의 차이를 측정하는 Binary Cross Entropy Loss에 음수를 취하여 계산된다.
 - 모델 성능 개선 전략 적용 전의 Fusion Loss와 Background Inpaint Loss는 점차 하락하긴 하지만 심각하게 불안정한 경향을 나타낸다. 성능 개선 전략을 적용한 후의 Fusion Loss는 미세하게 튀는 경향을 보이지만 적용 전의 Loss에 비해 눈에 띄게 안정적으로 감소한다. 또한, Background Inpaint Loss는 적용 전과 비교했을 때 안정적으로 1.38으로 수렴하는 것을 볼 수 있다.
 
 **[MOSTEL METRICS]**
 
-<img width="1296" alt="스크린샷 2023-07-09 오후 5 45 47" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/bac32d5d-1ec3-49e6-9067-9d64eb9f20f6">
+<img width="1302" alt="스크린샷 2023-07-27 오전 11 45 02" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/41229c94-eca4-41c6-afcc-37f879cc1139">
 
 - **PSNR**[Peak Signal to Noise Ratio] : 원본 이미지와 생성된 이미지 간의 평균 제곱 오차를 측정하여 로그 스케일로 변환한 값으로, 이미지의 최대 신호와 잡음의 비율을 측정하는 지표이다. 원본과 생성된 이미지 간의 차이가 적을수록 값이 높아지므로, 증가하는 방향으로 학습되어야 한다.
 - **SSIM**[Structural Similarity Index] : 인간의 시각 시스템이 이미지의 품질을 인식하는 방식을 모델링한 것으로, 원본 이미지와 생성된 이미지 간의 밝기, 대비, 품질의 구조적 유사성을 측정하는 지표이다. 값이 1에 가까울수록 두 이미지의 구조적 유사성이 높다는 것으로, 증가하는 방향으로 학습되어야 한다.
@@ -248,8 +241,7 @@
 ---
 
 ## AI를 활용한 영상 내 텍스트 자동 번역 및 편집 기능을 통한 Projection Method
-
-<img width="1056" alt="스크린샷 2023-07-09 오후 5 46 28" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/c4c0c5df-cf3f-492a-ad6f-d381b11daf50">
+<img width="874" alt="스크린샷 2023-07-27 오전 11 45 43" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/66c8f738-828f-4fb9-ad06-912cf317d3d3">
 
 1. 프레임 선택
 2. OCR을 통하여 글자가 있는 좌표를 찾고, 글자를 인식
@@ -259,13 +251,12 @@
 
 **[Frame To Video]**
 
-<img width="545" alt="스크린샷 2023-07-09 오후 5 46 52" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/a4630754-3911-4ea7-9f13-45ca4926d9bb">
+<img width="545" alt="스크린샷 2023-07-27 오전 11 46 12" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/a34d3aad-f462-4b8f-93cf-410ca60c1f02">
 
 - Text Font Style Transfer를 적용한 프레임 단위를 영상(1초에 약 60 프레임)으로 합하여 사용자가 다운로드 할 수 있는 영상을 생성한다.
 
 ## AI를 활용한 영상 내 텍스트 수동 번역 및 편집 기능
-
-<img width="1190" alt="스크린샷 2023-07-09 오후 5 47 57" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/150f5c73-6f3d-4e41-a3d4-b8fd19c80782">
+<img width="1135" alt="스크린샷 2023-07-27 오전 11 47 02" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/7733a91f-a934-4860-b21f-78a19957da05">
 
 1. 편집된 영상의 프레임을 선택하여 원본 영상의 프레임으로 복원
 2. 번역 및 편집을 적용할 글자의 좌표 클릭
@@ -276,8 +267,7 @@
 ---
 
 ## AI를 활용한 영상 내 텍스트 제거 기능
-
-<img width="792" alt="스크린샷 2023-07-09 오후 5 48 35" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/f33b9070-fa11-4b76-941a-849d7eda8de1">
+<img width="728" alt="스크린샷 2023-07-27 오전 11 47 22" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/7430fca1-9328-43fa-a91a-2b8b3d7eee46">
 
 
 1. 편집된 영상의 프레임을 선택하여 원본 영상의 프레임으로 복원
@@ -285,19 +275,17 @@
 3. 제거한 이미지를 원래 글자 위치에 Projection
 
 [MOSTEL BRM 모듈 Custom화]
-
-<img width="1275" alt="스크린샷 2023-07-09 오후 5 49 07" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/f6983787-13ac-47eb-a699-adf9048d06e1">
+<img width="746" alt="스크린샷 2023-07-27 오전 11 48 26" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/1fe9d75a-1660-4bb8-9d56-401077a2770b">
 
 - **BRM의 Inpainting 원리** : Masking Image로 제거해야 하는 영역을 Guide하여 텍스트를 제거
 
-<img width="1273" alt="스크린샷 2023-07-09 오후 5 49 30" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/7729f228-e30b-432b-8b9e-cf635927c78d">
+<img width="744" alt="스크린샷 2023-07-27 오전 11 48 45" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/9721ccdb-95ff-4728-99ef-dfafe86494be">
 
 
 - 기존 MOSTEL BRM 모듈의 Inpainting 원리로 학습하였을 때 글자 테두리가 남는 문제가 발생하였으며, 자연스러운 배경 이미지를 생성하기 위해 **cv2.Dilate**를 사용하여 **Masking Image에 글자 팽창을 적용**시켰다. 적용시킨 Masking Image를 Guide한 결과 Background를 보존한 채로 글자만 제거하여 성능을 개선하였다.
 
 [MOSTEL Pre-Transformation 모듈 Custom화]
-
-<img width="1275" alt="스크린샷 2023-07-09 오후 5 50 41" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/fad091a5-a2a8-4ba7-a7f6-80455dccad95">
+<img width="744" alt="스크린샷 2023-07-27 오전 11 49 11" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/5d520d1b-2cb5-42e7-a593-fff803e92d89">
 
 - **TMM의 Text Recognition 원리** : 글자를 인식할 수 있는 Recognizer를 사용하여 글자의 위치, 방향, 색상 등 원본 이미지의 글자에 대한 특징을 Target Text에 적용
 - 영어로만 학습되어 있기에 한국어 Font Style을 학습하지 못 하고 Target Text에 Font Style이 적용되지 않는 문제가 발생하였으며, 이를 해결하기 위해 Mostel의 구조 파악 후 Recognizer 모듈을 커스텀하여 **한국어와 영어 두 언어 모두 인식**할 수 있도록 학습하여 성능을 개선하였다.
@@ -307,14 +295,13 @@
 ## 향후 계획
 
 ### 신경망 기반 고화질 변환 : Real-ESRGAN
-
-<img width="769" alt="스크린샷 2023-07-09 오후 5 51 06" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/93db93d6-a6d1-4892-be14-ca6c643b7f69">
+<img width="773" alt="스크린샷 2023-07-27 오전 11 49 29" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/01264a0a-9f02-4fcf-9b39-6e50cb83544d">
 
 - 기존 Text 이미지에 비해 저화질로 생성된 Text Font Style Transfer 이미지의 화질을 높이기 위해 GAN을 활용하여 현실적이고 자연스러운 이미지를 생성하여 시각적인 품질 향상시킨다.
 
 ### 객체 탐지 및 추적 : Siamese Network
 
-<img width="1284" alt="스크린샷 2023-07-09 오후 5 51 29" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/5d604d45-1d7d-4b4d-b120-b66ed92fa7a5">
+<img width="756" alt="스크린샷 2023-07-27 오전 11 49 46" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/12b139df-3ca6-4221-a721-69d60cc2ad5c">
 
 - 기존의 편집된 영상은 프레임 합성 시에 프레임 간의 차이가 존재하여 흔들림 또는 불일치 현상이 발생한다. 이를 개선하기 위해 Siamese Network를 사용하여 두 개의 프레임을 비교하여 프레임 합성 시에 발생하는 흔들림 현상을 최소화하고, 자연스러운 동영상 생성한다.
 
@@ -324,24 +311,24 @@
 
 ### 타 분야 적용 1 : 포스터, 상품
 
-<img width="968" alt="스크린샷 2023-07-09 오후 5 52 12" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/ebe4bd12-4026-4cda-ab7b-7e8d8668978f">
+<img width="838" alt="스크린샷 2023-07-27 오전 11 50 17" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/85503d9e-16a1-4caf-9e86-eabfa2dcfecf">
 
 - 영화, 드라마 이외에도 원본 이미지의 Text Font Style을 학습하여 번역된 Text에 Font Style Transfer를 적용하여 포스터, 상품 등 다양하게 사용 가능하다.
 
 ### 타 분야 적용 2 : 번역기
 
-<img width="1279" alt="스크린샷 2023-07-09 오후 5 52 39" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/845531fc-ac66-4588-b677-8902139159ec">
-
+<img width="821" alt="스크린샷 2023-07-27 오전 11 50 43" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/684a2b7c-99f2-4f2b-801d-1f7687c574f0">
 
 - 네이버에서 진행중인 “더 잘 읽히는 번역기” 프로젝트의 일부로, 현재 원본 이미지 내의 텍스트를 지우고 번역된 텍스트를 Fusion하는 프로젝트가 존재한다.
 
-<img width="1276" alt="스크린샷 2023-07-09 오후 5 53 03" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/74752125-241e-4a3b-b9d7-66110735cc99">
+<img width="824" alt="스크린샷 2023-07-27 오전 11 51 09" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/274b3bbe-8839-461e-adf6-06988cd64358">
+b-b9d7-66110735cc99">
 
 - 위의 사진과 같이 파파고 번역기는 배경이 완전히 지워지지 않고 Font Style을 반영하지 못 하지만, 우리의 모델을 배경을 최대한 보존하여 글자 색상과 Font Style을 반영할 수 있다.
 
 ### 편집 비용 절감 가능
 
-<img width="577" alt="스크린샷 2023-07-09 오후 5 53 39" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/9395a970-c6cf-4c10-8413-2fab9272871c">
+<img width="599" alt="스크린샷 2023-07-27 오전 11 51 39" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/3ec93894-1e63-485f-9e57-c6fecd679a70">
 
 - 현재 10초 길이 영상의 컴퓨터 그래픽 작업의 편집 비용은 10만 원부터 35만 원까지 수작업으로 진행되고 있으며, 작업일은 2일에서 5일이 소요된다.
 - 컴퓨터 그래픽 작업 분야에서 AI를 활용한다면 시간적, 금전적 기회비용을 절감시킬 수 있으며, 더 나아가 증가하는 K 콘텐츠 산업의 수출에 있어서 해외 콘텐츠 접근성을 높이고, 국내 콘텐츠 수출 시장의 규모를 더욱 성장시킬 수 있다.
@@ -350,7 +337,7 @@
 
 ## 웹사이트 구상도
 
-<img width="1287" alt="스크린샷 2023-07-09 오후 5 54 25" src="https://github.com/Yu-Miri/Text-Translation-and-Font-Style-Editing-in-Video/assets/121469490/17ae7f79-fa31-480b-a6df-1c9b7b6bfb32">
+<img width="966" alt="스크린샷 2023-07-27 오전 11 53 59" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/64da5d62-1950-4183-a5fa-fc9a9896c754">
 
 - 위에서 명시한 세 가지 기능을 추가한 웹사이트의 구상도로, 해당 웹사이트는 **회원가입 기능**과 **로그인 기능**, **편집 기록 기능**, **편집된 영상 재편집 기능**, **영상 업로드 기능**, **영상 저장 기능**, **글자 재생성 기능**, **글자 제거 기능**을 제공한다.
 
