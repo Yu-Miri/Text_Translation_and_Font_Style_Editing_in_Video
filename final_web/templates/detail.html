@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table,
+      th,
+      td,
+      tr {
+        border: 2px solid rgb(208, 155, 240);
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <title>Detail Record</title>
+  </head>
+  <body>
+    <table>
+      <h2>Records</h2>
+      <tr>
+        <th>Version</th>
+        <th>History</th>
+        <th>Detail</th>
+      </tr>
+      {% for row in result_table %}
+      <tr>
+        <td>{{row.Version}}</td>
+        <td>{{row.History}}</td>
+        <td>{{row.Detail}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

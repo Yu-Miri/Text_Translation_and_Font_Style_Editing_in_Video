@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Display</title>
+    <style>
+      body {
+        background-image: url("../static/page_img/main.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        height: 700px;
+        width: 1000px;
+        border-radius: 5px;
+      }
+
+      h1 {
+        color: #d4d4d4;
+        margin-top: 0;
+      }
+      h3 {
+        color: rgb(129, 129, 129);
+      }
+      .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .video-container video {
+        height: 400px;
+        margin: 10px;
+      }
+      .text-container {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .button-container {
+        margin-top: 20px;
+      }
+      .action-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #bcbcbc;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      .action-button:hover {
+        background-color: #bcbcbc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Video Text Translation & Font Style Transfer</h1>
+      <div class="video-container">
+        <video controls>
+          <source
+            src="../static/uploads/{{ filename_folder_name }}/videos/auto/{{ uploaded_filename }}"
+            type="video/mp4"
+          />
+          <!-- 띄울 비디오 경로 지정 -->
+        </video>
+      </div>
+      <div class="button-container">
+        <button onclick="location.href='/edit?filename={{ uploaded_filename }}'" class="action-button">
+          Edit
+        </button>
+        <button
+          onclick="location.href='/download?filename={{ uploaded_filename }}'"
+          class="action-button"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

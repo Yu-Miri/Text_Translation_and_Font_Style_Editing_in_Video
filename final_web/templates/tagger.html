@@ -1,0 +1,247 @@
+<!doctype html>
+<html style="height:100%;">
+<head>
+    <title>Tagger</title>
+    <style>
+      body {
+        background-image: url("../static/page_img/edit.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .panel.panel-default {
+        background-color: rgba(173, 173, 173, 0.183);
+        color: #ffffff;
+      }
+      .btn-custom {
+        background-color:#bcbcbc;
+        color: #000000;
+        border-radius: 5px;
+        font-size: 17px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .btn-custom2 {
+        margin-top: 10px;
+        background-color:#bcbcbc;
+        color: #000000;
+        border-radius: 10px;
+      }
+      .btn-save {
+        margin-top: 10px;
+        width: 150px;
+        height: 40px;
+        font-size: 17px;
+        margin-bottom: 30px;
+        background-color:#bcbcbc;
+        color: #000000;
+        border-radius: 5px;
+        
+      }
+  .text-custom {
+    color:#000000
+  }
+  .panel-title {
+    color: #ffffff;
+  }
+  .text-custom {
+    color: #ffffff
+  }
+  .panel-heading{
+    background-color: rgba(0, 0, 0, 0.443);
+  }
+  input[type="text"] {
+    color: #000000; /* 검은색으로 설정 */
+  }
+      </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+
+<body style="height:100%;">
+<nav id="sidebar" style="
+            width: 25%;
+            height: 100%;
+            float: left;
+            z-index: 8000;
+            margin-bottom: 0px;">          
+  <div style=" text-align: right;">
+    <button id= "reset" class="btn-custom" onclick="window.location.replace('/reset/')" type="button">Reset</button>
+  </div>
+    <div class="panel panel-default" style="height: 30%;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Regenerate</h3>
+        </div>
+        
+          <script>
+            var label = function(id, name) {
+              window.location.replace("/label/" + id);
+            }
+          </script>
+
+          <div class="panel-body">
+            <div style=" text-align: center;">
+              <label id = "remove_edit_label">1. Please click 4 points to regenerate.</label>
+            </div>
+            <div>
+            <form action="/reedit" method="POST" class="write-form form1">
+                <input name="text" type="text" placeholder="2. Enter Text To Convert." style="text-align: center;color: #000000;">
+                  <button type="submit" class="btn-custom" value="완료">Confirm</button>
+            </form>
+          </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="height: 30%;">
+      <div class="panel-heading">
+        <h3 class="panel-title">Text Remover</h3>
+      </div>
+        <div style=" text-align: center;">
+          <label id = "remove_edit_label">Please click the 4 points to remove the area of text.</label>
+        </div>
+        <div style=" text-align: center;">
+          <button id= "remove_edit" class="btn-custom" onclick="window.location.replace('/remove_edit/' )" type="button" >Confirm</button>
+        </div>
+    </div>
+</nav>
+
+<div id="content" class="container" style="
+            width: 75%;
+            height: 100%;
+            float: right;
+            z-index: 8000;
+            margin-bottom:
+            0px;">
+ 
+<div style=" text-align: middle;">
+  <input type="button" id='back_button' class="btn-custom2" value="Previous" type="button" onclick="window.location.replace('/back_button')"></button>
+  <text class="text-custom"> {{head+1}} / {{len}} </text>
+  <input type="button" id='next_button' class="btn-custom2" value="Next" type="button" onclick="window.location.replace('/next_button')"></button>
+</div>
+
+  <div style=" text-align: right;">
+    <button id= "save-2" class="btn-save" onclick="window.location.replace('/download_video/')" type="button">Video Save</button>
+  </div>
+  <div style="overflow: scroll">
+    <canvas id="canvas" style="width:100%; height:80%; margin: 0; padding: 0;"></canvas>
+  </div>
+
+
+    <script>
+
+      // 새로고침 유지 코드 =======================================================================
+      /*
+      var input1 = document.getElementById("text");
+
+      // 페이지가 로드될 때 저장된 값이 있는지 확인하여 설정합니다.
+      var savedValue1 = localStorage.getItem("textValue1");
+      if (savedValue1) {
+        input1.value = savedValue1;
+      }
+
+      // input 태그의 값이 변경될 때마다 localStorage에 저장합니다.
+      input1.addEventListener("input", function() {
+        var value1 = input1.value;
+        localStorage.setItem("textValue1", value1);
+      });
+      */
+      // 새로고침 유지 코드 =======================================================================끝//
+
+      var labels = {{ labels|tojson|safe }};
+      var c = document.getElementById("canvas");
+      var id = 0 ; //바꿔야 할 수도
+      var text_element = document.getElementById("text");
+
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var value = urlParams.get('point_count');
+
+
+      var ctx = c.getContext("2d");
+      
+      var drawDiamond = function(x1, y1, x2, y2, x3, y3, x4, y4) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.lineTo(x3, y3);
+        ctx.lineTo(x4, y4);
+        ctx.closePath();
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      };
+
+      var image = new Image();
+      image.onload = function(e) {
+        ctx.canvas.width = image.width;
+        ctx.canvas.height = image.height;
+        c.width = image.width;
+        c.height = image.height;
+        ctx.drawImage(image, 0, 0);
+        console.log(labels);
+        // 8개의 좌표로 마름모 그리기
+        if (labels.length == 4){ 
+          drawDiamond(labels[0].x, labels[0].y, labels[1].x, labels[1].y, labels[2].x, labels[2].y, labels[3].x, labels[3].y);
+        }
+      };
+
+      image.style.display="block";
+      image.src = "{{view_img_path}}/{{ image }}";
+
+      var clicked = false;
+      var fPoint = {};
+
+      c.onclick = function(e) {
+
+          console.log(clicked);
+          if (!clicked) {
+              var x = (image.width / c.scrollWidth) * e.offsetX;
+              var y = (image.height / c.scrollHeight) * e.offsetY;
+              console.log(e);
+              ctx.strokeStyle = "red";
+              ctx.fillStyle = "red";
+              ctx.beginPath();
+              ctx.arc(x, y, 4, 0, 2*Math.PI, false);
+              ctx.fill();
+              
+              if (labels.length > 0){ 
+
+                for (var i = 0;  i<labels.length; i++){
+                  ctx.strokeStyle = "red";
+                  ctx.fillStyle = "red";
+                  ctx.beginPath();
+                  ctx.arc(labels[i].x, labels[i].y, 4, 0, 2*Math.PI, false);
+                  ctx.fill();
+                }
+              }  
+
+              fPoint = {
+                x: x,
+                y: y
+              };
+
+              window.location.replace("/add/" + id+
+              "?x=" + fPoint.x +
+              "&y=" + fPoint.y );
+              
+              ;
+          }
+          
+          clicked = !clicked; 
+    };
+      
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Page</title>
+    <style>
+      body {
+        background-image: url("../static/page_img/main.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        background-color: #ffd4f5;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      h1 {
+        color: #9400d3;
+      }
+
+      input[type="text"],
+      input[type="text"],
+      input[type="number"],
+      input[type="number"],
+      input[type="number"],
+      input[type="number"] {
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        width: 200px;
+      }
+
+      input[type="submit"] {
+        padding: 4px 12px;
+        border-radius: 3px;
+        background-color: #c383ff;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #c383ff;
+      }
+    </style>
+  </head>
+  <body>
+    이미지업로드버튼 -> /upload.html 연결되게 ! //// 컬럼 네개 ///영상편집 ㅠㅠ
+    대상을 명확하게 하자!
+    <div class="container">
+      <h1>My Editing Setting</h1>
+      <form action="/history_add" method="post">
+        <input type="text" name="text" placeholder="Text" /> <br />
+        <input type="text" name="text_color" placeholder="Text_Color" /> <br />
+        <input type="number" name="xmin" placeholder="X_Min" /> <br />
+        <input type="number" name="xmax" placeholder="X_Max" /> <br />
+        <input type="number" name="ymin" placeholder="Y_Min" /> <br />
+        <input type="number" name="ymax" placeholder="Y_Max" /> <br />
+        <input
+          type="submit"
+          value="내 편집 설정하기"
+          onClick="alert('편집 설정이 완료되었습니다.')"
+        />
+      </form>
+    </div>
+  </body>
+</html>

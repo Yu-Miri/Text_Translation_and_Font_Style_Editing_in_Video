@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url("../static/page_img/main.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        height: 700px;
+        width: 1000px;
+        border-radius: 5px;
+      }
+
+      .history-table {
+        border-collapse: collapse;
+        border: 1px solid rgb(70, 70, 70);
+        color: #d4d4d4;
+        /*height: 400px;*/
+        width: 995px;
+      }
+
+      .history-table th,
+      .history-table td {
+        border: 1px solid rgb(70, 70, 70);
+        background-color: rgba(45, 45, 45, 0.6);
+        padding: 8px;
+      }
+
+      h1 {
+        color: #d4d4d4;
+      }
+
+      .upload-button {
+        background-color: #bcbcbc;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 3px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        top: 68px;
+        right: -400px;
+        position: relative;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <title>Edited History</title>
+  </head>
+
+  <body>
+    
+      
+    <div class="container">
+      <button onclick="location.href='/upload'" class="upload-button">Go To Upload Video</button>  
+      <h1>Edited History</h1>
+      <table class="history-table">
+        <tr style ="height:40px">
+          <th>Version</th>
+          <th>Movie Name</th>
+          <th>Time</th>
+          <th>Edit</th>
+        </tr>
+        {% for row in result_table %}
+        <tr>
+          <td>{{ row.Version }}</td>
+          <td>{{ row.Movie_name }}</td>
+          <td>{{ row.Time }}</td>
+          
+          <td>
+            <button class="tagger-button" onClick="location.href='/edit?filename={{ row.Movie_name }}'">
+              Re-Edit
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br />
+      
+  </div>
+  </body>
+</html>

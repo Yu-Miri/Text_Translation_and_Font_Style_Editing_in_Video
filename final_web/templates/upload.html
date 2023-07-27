@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Text Translation & Font Style Transfer</title>
+    <style>
+      body {
+        background-image: url("../static/page_img/main.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        height: 700px;
+        width: 1000px;
+        border-radius: 5px;
+      }
+      h1 {
+        color: #d4d4d4;
+      }
+      p {
+        color: rgb(129, 129, 129);
+      }
+      .custom-file-input {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+      .custom-file-input label {
+        display: inline-block;
+      }
+      input[type="file"] {
+        padding: 5px;
+        border-radius: 3px;
+        border: 2px dashed #626262;
+        margin-bottom: 10px;
+        width: 600px;
+        height: 400px;
+        color: #bcbcbc;
+        background-color: #0c0c0cbf;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 3px;
+        background-color: #bcbcbc;
+        color: #000000;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const fileInput = document.getElementById("fileInput");
+
+        fileInput.addEventListener("change", (event) => {
+          if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              previewImage.src = e.target.result;
+              previewImage.classList.add("preview-image");
+            };
+            reader.readAsDataURL(event.target.files[0]);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Video Text Translation & Font Style Transfer</h1>
+      <p>업로드 파일 형식: mp4, mov, avi</p>
+      <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <div class="custom-file-input">
+          <label for="fileInput"></label>
+          <input
+            type="file"
+            name="file"
+            id="fileInput"
+            accept="video/mp4, video/mov, video/avi"
+          />
+        </div>
+        <input type="submit" value="Upload" onClick="handleUploadSuccess()" />
+        <script>
+          function handleUploadSuccess() {
+            alert("파일을 성공적으로 업로드하였습니다.");
+          }
+        </script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              var form = document.querySelector("form");
+              form.addEventListener("submit", function () {
+                  var message = document.createElement("li");
+                  message.textContent = "Converting Uploaded Image...";
+                  var messageList = document.querySelector("ul");
+                  if (!messageList) {
+                      messageList = document.createElement("ul");
+                      var p = document.querySelector("p");
+                      p.appendChild(messageList);
+                  }
+                  messageList.appendChild(message);
+              });
+          });
+      </script>
+      </form>
+    </div>
+  </body>
+</html>
