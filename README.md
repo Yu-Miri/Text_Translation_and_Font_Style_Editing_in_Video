@@ -380,6 +380,12 @@ conda uninstall pytorch
 conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorchinput_d
 ~~~
 
+### Preparing the Dataset
+https://drive.google.com/drive/folders/12TUPIBcyD-3gm_YZHKXBPlLI-6FmE6dh?usp=sharing
+
+**Mostel Dataset & Mostel ckpt** : Mostel
+**web mostel ckpt** : final_web
+
 ---
 ### Training
 
