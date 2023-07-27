@@ -2,7 +2,6 @@
 ## 웹사이트 시연
 ### 영상 업로드 및 텍스트 자동 편집 시연 영상
 ![영상 업로드 및 텍스트 자동 편집 시연 영상](https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/29dd0fda-a54d-4b43-87e3-477149e433b6)
-![텍스트 재생성 시연 영상](https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/a6d8b751-9dda-4a4a-b92a-3f59e2ea3dda)
 
 ### 텍스트 재생성 시연 영상
 ![텍스트 재생성 시연 영상](https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/a6d8b751-9dda-4a4a-b92a-3f59e2ea3dda)
