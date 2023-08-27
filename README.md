@@ -9,6 +9,16 @@
 ### 텍스트 제거 시연 영상
 ![텍스트 제거 시연 영상](https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/adf52282-4b23-4cf2-9d64-a44562368a0f)
 
+### 편집 영상
+[원본 영상](https://youtu.be/X7MI3SjqPlc) : 영화 '베테랑' 한 장면
+
+[자동 편집 영상](https://youtu.be/fayuC1aMplA) : 영상 내 텍스트 자동 번역 및 편집 영상 결과
+
+[수동 편집 영상](https://youtu.be/r_7hRjK7z-Y) : 영상 내 텍스트 수동 번역 및 편집 영상 결과
+
+[텍스트 제거 영상](https://youtu.be/GzN6uqkJaVw) : 영상 내 텍스트 제거 영상 결과
+
+
 ## 프로젝트 개요
 
 - **기간** : 2023.04.24 ~ 2023.06.23
@@ -68,15 +78,6 @@
 
 
 - 본 프로젝트는 딥러닝 모델을 활용하여 영상 내 한국어 글자 스타일을 번역된 영어 글자에 적용하여 컴퓨터 그래픽을 자동으로 편집하는 End-to-End Framework 제시한다.
-
-## 편집 영상
-[원본 영상](https://youtu.be/X7MI3SjqPlc) : 영화 '베테랑' 한 장면
-
-[자동 편집 영상](https://youtu.be/fayuC1aMplA) : 영상 내 텍스트 자동 번역 및 편집 영상 결과
-
-[수동 편집 영상](https://youtu.be/r_7hRjK7z-Y) : 영상 내 텍스트 수동 번역 및 편집 영상 결과
-
-[텍스트 제거 영상](https://youtu.be/GzN6uqkJaVw) : 영상 내 텍스트 제거 영상 결과
 
 ---
 ## 편집 프로그램 개요
